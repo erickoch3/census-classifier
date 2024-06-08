@@ -9,6 +9,9 @@ from sklearn.preprocessing import StandardScaler, LabelBinarizer
 from src.model import train_model
 from src.model import compute_model_metrics
 from src.model import save_model, load_model
+import sys
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
 @pytest.mark.parametrize("y, preds, expected_precision, expected_recall, expected_fbeta", [
     (np.array([1, 0, 1, 0, 1, 0]), np.array([1, 0, 1, 0, 1, 0]), 1.0, 1.0, 1.0),

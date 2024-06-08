@@ -5,10 +5,12 @@ Date Created: 2024-05-30
 This modules provides code to load and process census data
 """
 
+import cleaning.clean_data
 import numpy as np
 import pandas as pd
 import os
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+import cleaning
 
 
 def load_raw_census_data():
@@ -16,7 +18,7 @@ def load_raw_census_data():
     return pd.read_csv(data_path)
 
 def load_cleaned_census_data():
-    data_path = os.path.join(os.path.dirname(os.path.abspath(__name__)),"src/cleaning/clean_data.csv")
+    data_path = cleaning.clean_data.CLEAN_DATA_PATH
     return pd.read_csv(data_path)
 
 def process_data(

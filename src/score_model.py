@@ -5,11 +5,13 @@ Date Created: 2024-05-30
 This module scores our staged ("testing") model on our test data
 """
 import logger as appLogger
-from src import model
-from src import data as datalib
+import model
+import data as datalib
 from sklearn.model_selection import train_test_split
 from sklearn.exceptions import NotFittedError
 import os
+import train_model
+import pandas as pd
 
 logger = appLogger.logger
 
@@ -26,7 +28,7 @@ def run_all():
     try:
         # Optional enhancement, use K-fold cross-validation instead of a train-test split
         logger.info("Splitting data into train and test sets...")
-        _, test = train_test_split(data, test_size=0.20)
+        test = pd.read_csv(train_model.TEST_DATA_PATH)
         logger.info("Data split into train and test sets successfully.")
     except ValueError as e:
         logger.error(f"Error splitting data: {e}")
@@ -34,16 +36,7 @@ def run_all():
     
     rfc_model, encoder, lb = model.load_model(os.path.join(model.MODEL_FOLDER, model.TEST_MODEL_FILENAME))
     
-    cat_features = [
-        "workclass",
-        "education",
-        "marital-status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "native-country",
-    ]
+    cat_features = train_model.CAT_FEATURES
     
     try:
         # Test the model against our test data
