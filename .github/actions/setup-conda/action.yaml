@@ -18,7 +18,10 @@ runs:
     - run: |
         echo $CONDA/bin >> $GITHUB_PATH
         conda init
+      shell: bash
     - run: |
         conda update conda && conda env update --file ${{ inputs.environment-file }} --name census-classifier
+      shell: bash
     - run: |
         source $CONDA/bin/activate census-classifier
+      shell: bash
