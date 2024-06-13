@@ -1,24 +1,29 @@
-name: 'Setup Conda'
-description: 'Set up Conda environment and activate it'
-inputs:
-  python-version:
-    description: 'Python version'
-    required: true
-    default: '3.10'
-  environment-file:
-    description: 'Environment file'
-    required: true
-    default: 'environment.yaml'
-runs:
-  using: 'composite'
-  steps:
-    - uses: actions/setup-python@v3
+name: Conda Setup
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        required: true
+        type: string
+      conda-env:
+        required: true
+        type: string
+
+jobs:
+  setup-conda:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
       with:
-        python-version: ${{ inputs.python-version }}
-    - run: |
+        python-version: '3.10'
+    - name: Add conda to system path
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
         conda init
-      shell: bash
-    - run: |
-        conda update conda && conda env update --file ${{ inputs.environment-file }} --name census-classifier
-      shell: bash
+    - name: Install dependencies
+      run: |
+        conda update conda && conda env update --file environment.yaml --name census-classifier

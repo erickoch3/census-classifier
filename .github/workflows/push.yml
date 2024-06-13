@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Conda Setup
-      uses: ./.github/workflows/conda-setup.yml
+      uses: ./.github/workflows/conda-setup.yaml
     - name: Lint with flake8
       run: |
         conda install flake8
@@ -28,7 +28,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Conda Setup
-      uses: ./.github/workflows/conda-setup.yml
+      uses: ./.github/workflows/conda-setup.yaml
     - name: Test with pytest
       run: |
         source $CONDA/bin/activate census-classifier
