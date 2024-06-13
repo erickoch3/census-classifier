@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -12,6 +13,8 @@ jobs:
         with:
           python-version: '3.10'
           environment-file: 'environment.yaml'
+      - run: |
+          source $CONDA/bin/activate census-classifier
       - name: Lint with flake8
         run: |
           conda install flake8
@@ -20,7 +23,9 @@ jobs:
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
+
   test:
+    name: Test
     runs-on: ubuntu-latest
     needs: lint
     steps:
@@ -30,7 +35,10 @@ jobs:
         with:
           python-version: '3.10'
           environment-file: 'environment.yaml'
+      - run: |
+          source $CONDA/bin/activate census-classifier
       - name: Test with pytest
         run: |
           conda install pytest
           pytest
+
