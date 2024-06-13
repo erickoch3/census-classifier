@@ -31,6 +31,6 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        conda activate census-classifier
+        source $CONDA/bin/activate census-classifier
         conda install pytest
         pytest
