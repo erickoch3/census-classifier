@@ -13,10 +13,15 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 import joblib
 import os
-import src.data as datalib
-from src.file_util import find_repo_root
+import data as datalib
+import sys
 
 # Define constants
+
+# Ensure the src directory is in the Python path
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+
+from file_util import find_repo_root
 
 
 REPO_ROOT = find_repo_root(os.path.abspath(__file__))
