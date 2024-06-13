@@ -9,16 +9,11 @@ import os
 
 import pandas as pd
 from sklearn.exceptions import NotFittedError
-from sklearn.model_selection import train_test_split
 
+import data as datalib
 import logger as appLogger
 import model
-import data as datalib
-from sklearn.model_selection import train_test_split
-from sklearn.exceptions import NotFittedError
-import os
 import train_model
-import pandas as pd
 
 logger = appLogger.logger
 
@@ -42,11 +37,13 @@ def run_all():
     except ValueError as err:
         logger.error(f"Error splitting data: {err}")
         return
-    
-    rfc_model, encoder, lb = model.load_model(os.path.join(model.MODEL_FOLDER, model.TEST_MODEL_FILENAME))
-    
+
+    rfc_model, encoder, lb = model.load_model(
+        os.path.join(model.MODEL_FOLDER, model.TEST_MODEL_FILENAME)
+    )
+
     cat_features = train_model.CAT_FEATURES
-    
+
     try:
         # Test the model against our test data
         logger.info("Processing test data...")

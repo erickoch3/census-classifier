@@ -6,10 +6,12 @@ This modules provides code to load and process census data
 """
 
 import os
+
 import numpy as np
-from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
-from cleaning import clean_data
 import pandas as pd
+from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+
+from cleaning import clean_data
 
 
 def load_raw_census_data():
@@ -25,12 +27,13 @@ def load_cleaned_census_data():
 
 
 def process_data(
-        x_data,
-        categorical_features=[],
-        label=None,
-        training=True,
-        encoder=None,
-        label_binarizer=None):
+    x_data,
+    categorical_features=[],
+    label=None,
+    training=True,
+    encoder=None,
+    label_binarizer=None,
+):
     """Process the data used in the machine learning pipeline.
 
     Processes the data using one hot encoding for the categorical features and a

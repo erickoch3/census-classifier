@@ -6,6 +6,7 @@ This module provides code to train and score the model.
 """
 
 import os
+import sys
 
 import joblib
 from sklearn.ensemble import RandomForestClassifier
@@ -13,17 +14,15 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-import joblib
-import os
-import data as datalib
-import sys
 
-# Define constants
+import data as datalib
+from src.file_util import find_repo_root
 
 # Ensure the src directory is in the Python path
-sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
-from file_util import find_repo_root
+
+# Define constants
 
 
 REPO_ROOT = find_repo_root(os.path.abspath(__file__))

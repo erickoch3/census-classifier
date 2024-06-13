@@ -5,20 +5,24 @@ Date Created: 2024-05-30
 This module integrates the data/model libraries to run the end-to-end training.
 """
 
+import os
+
 import pandas as pd
 from sklearn.exceptions import NotFittedError
 from sklearn.model_selection import train_test_split
+
 import data as datalib
-import model
 import logger as appLogger
-from sklearn.exceptions import NotFittedError
-import pandas as pd
-import os
+import model
 
 logger = appLogger.logger
 
-TRAIN_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__name__)),"src/cleaning/train_data.csv")
-TEST_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__name__)), "src/cleaning/test_data.csv")
+TRAIN_DATA_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__name__)), "src/cleaning/train_data.csv"
+)
+TEST_DATA_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__name__)), "src/cleaning/test_data.csv"
+)
 
 CAT_FEATURES = [
     "workclass",
@@ -30,6 +34,7 @@ CAT_FEATURES = [
     "sex",
     "native-country",
 ]
+
 
 def run_all():
     try:
@@ -56,8 +61,7 @@ def run_all():
     try:
         logger.info("Processing training data...")
         x_train, y_train, encoder, lb = datalib.process_data(
-            train, categorical_features=CAT_FEATURES, label="salary", training=True
-        )
+            train, categorical_features=CAT_FEATURES, label="salary", training=True)
         logger.info("Training data processed successfully.")
     except KeyError as err:
         logger.error(f"Error processing training data: {err}")

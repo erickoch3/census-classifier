@@ -21,13 +21,13 @@ test:
 	./scripts/run_in_conda.sh census-classifier "pytest tests/ -n 4"
 
 clean:
-	./scripts/run_in_conda.sh census-classifier "python3 src/cleaning/clean_data.py"
+	./scripts/run_in_conda.sh census-classifier "export PYTHONPATH=. && python3 src/cleaning/clean_data.py"
 
 train:
-	./scripts/run_in_conda.sh census-classifier "python3 src/train_model.py"
+	./scripts/run_in_conda.sh census-classifier "export PYTHONPATH=. && python3 src/train_model.py"
 
 score:
-	./scripts/run_in_conda.sh census-classifier "python3 src/score_model.py"
+	./scripts/run_in_conda.sh census-classifier "export PYTHONPATH=. && python3 src/score_model.py"
 
 sanity:
-	./scripts/run_in_conda.sh census-classifier "python3 ./sanitycheck.py"
+	./scripts/run_in_conda.sh census-classifier "export PYTHONPATH=. && python3 ./sanitycheck.py"

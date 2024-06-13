@@ -6,13 +6,20 @@ This modules loads raw census data and cleans it for further processing
 """
 
 import os
+
 import pandas as pd
 
-RAW_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__name__)),"data/census.csv")
-CLEAN_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__name__)),"src/cleaning/clean_data.csv")
+RAW_DATA_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__name__)), "data/census.csv"
+)
+CLEAN_DATA_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__name__)), "src/cleaning/clean_data.csv"
+)
+
 
 def load_raw_census_data():
     return pd.read_csv(RAW_DATA_PATH)
+
 
 def clean_data(df):
     # Drop duplicates
@@ -25,8 +32,10 @@ def clean_data(df):
     df = df.replace(" ", "", regex=True)
     return df
 
+
 def save_new_data(df: pd.DataFrame, dest_path):
     df.to_csv(dest_path)
+
 
 if __name__ == "__main__":
     df = load_raw_census_data()

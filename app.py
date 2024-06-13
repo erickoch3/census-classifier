@@ -1,8 +1,9 @@
 # app.py
 from fastapi import FastAPI
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 app = FastAPI()
+
 
 class ModelInput(BaseModel):
     age: int = Field(...)
@@ -36,14 +37,16 @@ class ModelInput(BaseModel):
                 "capital-gain": 2174,
                 "capital-loss": 0,
                 "hours-per-week": 40,
-                "native-country": "United-States"
+                "native-country": "United-States",
             }
         }
     )
 
+
 @app.get("/")
 async def read_root():
     return {"message": "Welcome to the FastAPI inference service!"}
+
 
 @app.post("/predict")
 async def predict(input: ModelInput):
