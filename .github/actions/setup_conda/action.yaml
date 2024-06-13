@@ -1,0 +1,24 @@
+name: 'Setup Conda'
+description: 'Set up Conda environment and activate it'
+inputs:
+  python-version:
+    description: 'Python version'
+    required: true
+    default: '3.10'
+  environment-file:
+    description: 'Environment file'
+    required: true
+    default: 'environment.yaml'
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-python@v3
+      with:
+        python-version: ${{ inputs.python-version }}
+    - run: |
+        echo $CONDA/bin >> $GITHUB_PATH
+        conda init
+    - run: |
+        conda update conda && conda env update --file ${{ inputs.environment-file }} --name census-classifier
+    - run: |
+        source $CONDA/bin/activate census-classifier
