@@ -215,7 +215,7 @@ def model_performance_on_slices(
                 label=None,
                 training=False,
                 encoder=encoder,
-                lb=lb,
+                label_binarizer=lb,
             )
 
             preds = model.predict(x_slice_processed)

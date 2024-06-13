@@ -6,11 +6,10 @@ This modules provides code to load and process census data
 """
 
 import os
-
 import numpy as np
-import pandas as pd
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
-import cleaning
+from cleaning import clean_data
+import pandas as pd
 
 
 def load_raw_census_data():
@@ -21,7 +20,7 @@ def load_raw_census_data():
 
 
 def load_cleaned_census_data():
-    data_path = cleaning.clean_data.CLEAN_DATA_PATH
+    data_path = clean_data.CLEAN_DATA_PATH
     return pd.read_csv(data_path)
 
 

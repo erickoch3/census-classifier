@@ -55,7 +55,7 @@ def run_all():
 
     try:
         logger.info("Processing training data...")
-        X_train, y_train, encoder, lb = datalib.process_data(
+        x_train, y_train, encoder, lb = datalib.process_data(
             train, categorical_features=CAT_FEATURES, label="salary", training=True
         )
         logger.info("Training data processed successfully.")

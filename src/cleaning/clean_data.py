@@ -6,6 +6,7 @@ This modules loads raw census data and cleans it for further processing
 """
 
 import os
+import pandas as pd
 
 RAW_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__name__)),"data/census.csv")
 CLEAN_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__name__)),"src/cleaning/clean_data.csv")

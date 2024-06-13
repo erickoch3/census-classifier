@@ -56,7 +56,7 @@ def run_all():
             label="salary",
             training=False,
             encoder=encoder,
-            lb=lb,
+            label_binarizer=lb,
         )
         logger.info("Test data processed successfully.")
     except KeyError as err:
