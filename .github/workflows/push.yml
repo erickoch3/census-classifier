@@ -2,19 +2,23 @@ name: Census Classifier CI
 
 on: [push]
 
+.setup-conda: &setup-conda
+  - name: Setup Conda
+    uses: ./.github/actions/setup-conda
+    with:
+      python-version: '3.10'
+      environment-file: 'environment.yaml'
+  - name: Activate the conda environment
+    run: |
+      source $CONDA/bin/activate census-classifier
+
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Conda
-        uses: ./.github/actions/setup-conda
-        with:
-          python-version: '3.10'
-          environment-file: 'environment.yaml'
-      - run: |
-          source $CONDA/bin/activate census-classifier
+      - *setup-conda
       - name: Lint with flake8
         run: |
           conda install flake8
@@ -30,13 +34,7 @@ jobs:
     needs: lint
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Conda
-        uses: ./.github/actions/setup-conda
-        with:
-          python-version: '3.10'
-          environment-file: 'environment.yaml'
-      - run: |
-          source $CONDA/bin/activate census-classifier
+      - *setup-conda
       - name: Test with pytest
         run: |
           conda install pytest
