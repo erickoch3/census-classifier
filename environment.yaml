@@ -1,0 +1,19 @@
+name: census-classifier
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - uvicorn
+  - ujson
+  - tornado
+  - scipy
+  - psutil
+  - pip
+  - pip:
+    - requests
+    - flask
