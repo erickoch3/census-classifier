@@ -14,6 +14,8 @@ dependencies:
   - scipy
   - psutil
   - pip
+  - fastapi
   - pip:
     - requests
     - flask
+    - numpy
