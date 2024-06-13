@@ -12,8 +12,13 @@ from sklearn.exceptions import NotFittedError
 from sklearn.model_selection import train_test_split
 
 import logger as appLogger
-from src import data as datalib
-from src import model
+import model
+import data as datalib
+from sklearn.model_selection import train_test_split
+from sklearn.exceptions import NotFittedError
+import os
+import train_model
+import pandas as pd
 
 logger = appLogger.logger
 
@@ -32,27 +37,16 @@ def run_all():
         # Optional enhancement, use K-fold cross-validation instead of a
         # train-test split
         logger.info("Splitting data into train and test sets...")
-        _, test = train_test_split(data, test_size=0.20)
+        test = pd.read_csv(train_model.TEST_DATA_PATH)
         logger.info("Data split into train and test sets successfully.")
     except ValueError as err:
         logger.error(f"Error splitting data: {err}")
         return
-
-    rfc_model, encoder, lb = model.load_model(
-        os.path.join(model.MODEL_FOLDER, model.TEST_MODEL_FILENAME)
-    )
-
-    cat_features = [
-        "workclass",
-        "education",
-        "marital-status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "native-country",
-    ]
-
+    
+    rfc_model, encoder, lb = model.load_model(os.path.join(model.MODEL_FOLDER, model.TEST_MODEL_FILENAME))
+    
+    cat_features = train_model.CAT_FEATURES
+    
     try:
         # Test the model against our test data
         logger.info("Processing test data...")

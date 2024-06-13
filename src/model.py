@@ -13,11 +13,17 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-
-import src.data as datalib
-from src.file_util import find_repo_root
+import joblib
+import os
+import data as datalib
+import sys
 
 # Define constants
+
+# Ensure the src directory is in the Python path
+sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+
+from file_util import find_repo_root
 
 
 REPO_ROOT = find_repo_root(os.path.abspath(__file__))

@@ -8,13 +8,28 @@ This module integrates the data/model libraries to run the end-to-end training.
 import pandas as pd
 from sklearn.exceptions import NotFittedError
 from sklearn.model_selection import train_test_split
-
-import src.logger as appLogger
-from src import data as datalib
-from src import model
+import data as datalib
+import model
+import logger as appLogger
+from sklearn.exceptions import NotFittedError
+import pandas as pd
+import os
 
 logger = appLogger.logger
 
+TRAIN_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__name__)),"src/cleaning/train_data.csv")
+TEST_DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__name__)), "src/cleaning/test_data.csv")
+
+CAT_FEATURES = [
+    "workclass",
+    "education",
+    "marital-status",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "native-country",
+]
 
 def run_all():
     try:
@@ -31,26 +46,18 @@ def run_all():
         # train-test split
         logger.info("Splitting data into train and test sets...")
         train, test = train_test_split(data, test_size=0.20)
+        train.to_csv(TRAIN_DATA_PATH, index=False)
+        test.to_csv(TEST_DATA_PATH, index=False)
         logger.info("Data split into train and test sets successfully.")
     except ValueError as err:
         logger.error(f"Error splitting data: {err}")
         return
 
-    cat_features = [
-        "workclass",
-        "education",
-        "marital-status",
-        "occupation",
-        "relationship",
-        "race",
-        "sex",
-        "native-country",
-    ]
-
     try:
         logger.info("Processing training data...")
-        x_train, y_train, encoder, lb = datalib.process_data(
-            train, categorical_features=cat_features, label="salary", training=True)
+        X_train, y_train, encoder, lb = datalib.process_data(
+            train, categorical_features=CAT_FEATURES, label="salary", training=True
+        )
         logger.info("Training data processed successfully.")
     except KeyError as err:
         logger.error(f"Error processing training data: {err}")

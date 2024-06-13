@@ -5,11 +5,13 @@ import pytest
 from sklearn.base import is_classifier
 from sklearn.datasets import make_classification
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import fbeta_score, precision_score, recall_score
-from sklearn.preprocessing import LabelBinarizer, StandardScaler
+from sklearn.preprocessing import StandardScaler, LabelBinarizer
+from src.model import train_model
+from src.model import compute_model_metrics
+from src.model import save_model, load_model
+import sys
 
-from src.model import compute_model_metrics, load_model, save_model, train_model
-
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
 @pytest.mark.parametrize(
     "y, preds, expected_precision, expected_recall, expected_fbeta",
