@@ -56,6 +56,3 @@ async def predict(input: ModelInput):
     else:
         prediction = "<=50K"
     return {"prediction": prediction}
-
-if __name__ == "__main__":
-    app.run()
