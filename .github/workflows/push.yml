@@ -46,7 +46,7 @@ jobs:
 
   deploy:
     name: Deploy
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
@@ -72,3 +72,50 @@ jobs:
           existing_bucket_name: ${{ secrets.S3_BUCKET }}
           deployment_package: census-classifier.zip
           wait_for_deployment: true
+
+  smoke-test:
+    name: Smoke Test
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait for the application to be ready
+        run: sleep 60  # Wait for 60 seconds to ensure the application is up and running
+
+      - name: Perform smoke test
+        run: |
+          ENDPOINT=${{ secrets.ELASTIC_BEANSTALK_ENDPOINT }}
+          
+          # Test root endpoint
+          RESPONSE=$(curl --write-out "%{http_code}" --silent --output /dev/null $ENDPOINT)
+          if [ $RESPONSE -ne 200 ]; then
+            echo "Root endpoint test failed with response code $RESPONSE"
+            exit 1
+          else
+            echo "Root endpoint test passed with response code $RESPONSE"
+          fi
+
+          # Test /predict endpoint
+          PREDICT_RESPONSE=$(curl -X POST $ENDPOINT/predict -H "Content-Type: application/json" -d '{
+            "age": 25,
+            "workclass": "Private",
+            "fnlgt": 77516,
+            "education": "Bachelors",
+            "education-num": 13,
+            "marital-status": "Never-married",
+            "occupation": "Adm-clerical",
+            "relationship": "Not-in-family",
+            "race": "White",
+            "sex": "Male",
+            "capital-gain": 2174,
+            "capital-loss": 0,
+            "hours-per-week": 40,
+            "native-country": "United-States"
+          }')
+          echo "Predict response: $PREDICT_RESPONSE"
+          if [[ $PREDICT_RESPONSE != *"prediction"* ]]; then
+            echo "Predict endpoint test failed"
+            exit 1
+          else
+            echo "Predict endpoint test passed"
+          fi
