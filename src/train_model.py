@@ -12,7 +12,7 @@ from sklearn.exceptions import NotFittedError
 from sklearn.model_selection import train_test_split
 
 import data as datalib
-import logger as appLogger
+import src.logger as appLogger
 import model
 
 logger = appLogger.logger

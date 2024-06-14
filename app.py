@@ -1,9 +1,14 @@
 # app.py
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
+from src import model
+from src import train_model
+from src import data as datalib
 
 app = FastAPI()
 
+
+model, encoder, lb = model.load_model(model.PROD_MODEL_FILENAME, model.MODEL_FOLDER)
 
 class ModelInput(BaseModel):
     age: int = Field(...)
@@ -56,3 +61,22 @@ async def predict(input: ModelInput):
     else:
         prediction = "<=50K"
     return {"prediction": prediction}
+
+@app.post("/predict")
+async def predict(input: ModelInput):
+    try:
+        # Convert input to the required format for the model
+        input_data = input.dict(by_alias=True)
+        input_df = datalib.prepare_input_data(input_data)  # Define this function in datalib
+        encoded_input, _, _, _ = datalib.process_data(
+            input_df,
+            categorical_features=train_model.CAT_FEATURES,
+            training=False,
+            encoder=encoder
+        )
+        # Perform inference
+        preds = model.inference(model, encoded_input)
+        prediction = lb.inverse_transform(preds)[0]
+        return {"prediction": prediction}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

@@ -18,7 +18,7 @@ autolint:
 	./scripts/run_in_conda.sh census-classifier "autopep8 --in-place --aggressive --aggressive --recursive . && isort . && black ."
 
 test:
-	./scripts/run_in_conda.sh census-classifier "pytest tests/ -n 4"
+	./scripts/run_in_conda.sh census-classifier "export PYTHONPATH=. && pytest tests/ -n 4"
 
 clean:
 	./scripts/run_in_conda.sh census-classifier "export PYTHONPATH=. && python3 src/cleaning/clean_data.py"
@@ -31,3 +31,6 @@ score:
 
 sanity:
 	./scripts/run_in_conda.sh census-classifier "export PYTHONPATH=. && python3 ./sanitycheck.py"
+
+deploy:
+	cp model/test_model.pkl model/prod_model.pkl

@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
-from cleaning import clean_data
+from src.cleaning import clean_data
 
 
 def load_raw_census_data():
