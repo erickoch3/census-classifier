@@ -1,0 +1,507 @@
+./scripts/run_in_conda.sh census-classifier "export PYTHONPATH=. && python3 src/score_model.py"
+Model loaded from /Users/ewkoch/repos/census-classifier/model/test_model.pkl
+Performance for workclass=Self-emp-not-inc:
+  Precision: 0.7714285714285715
+  Recall: 0.5547945205479452
+  F-beta: 0.6454183266932271
+
+Performance for workclass=Private:
+  Precision: 0.7652399481193255
+  Recall: 0.5824284304047384
+  F-beta: 0.6614349775784754
+
+Performance for workclass=?:
+  Precision: 0.8571428571428571
+  Recall: 0.3333333333333333
+  F-beta: 0.48
+
+Performance for workclass=Local-gov:
+  Precision: 0.71
+  Recall: 0.6283185840707964
+  F-beta: 0.6666666666666666
+
+Performance for workclass=State-gov:
+  Precision: 0.7014925373134329
+  Recall: 0.6714285714285714
+  F-beta: 0.6861313868613139
+
+Performance for workclass=Self-emp-inc:
+  Precision: 0.8378378378378378
+  Recall: 0.7815126050420168
+  F-beta: 0.808695652173913
+
+Performance for workclass=Federal-gov:
+  Precision: 0.8194444444444444
+  Recall: 0.7023809523809523
+  F-beta: 0.7564102564102564
+
+Performance for workclass=Without-pay:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for workclass=Never-worked:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for education=Bachelors:
+  Precision: 0.7312252964426877
+  Recall: 0.7956989247311828
+  F-beta: 0.7621009268795057
+
+Performance for education=HS-grad:
+  Precision: 0.8050847457627118
+  Recall: 0.28273809523809523
+  F-beta: 0.4185022026431718
+
+Performance for education=12th:
+  Precision: 1.0
+  Recall: 0.4
+  F-beta: 0.5714285714285714
+
+Performance for education=11th:
+  Precision: 1.0
+  Recall: 0.36363636363636365
+  F-beta: 0.5333333333333333
+
+Performance for education=10th:
+  Precision: 1.0
+  Recall: 0.08333333333333333
+  F-beta: 0.15384615384615385
+
+Performance for education=Some-college:
+  Precision: 0.7740112994350282
+  Recall: 0.46757679180887374
+  F-beta: 0.5829787234042553
+
+Performance for education=Masters:
+  Precision: 0.7675675675675676
+  Recall: 0.8606060606060606
+  F-beta: 0.8114285714285714
+
+Performance for education=9th:
+  Precision: 1.0
+  Recall: 0.0
+  F-beta: 0.0
+
+Performance for education=7th-8th:
+  Precision: 0.5
+  Recall: 0.125
+  F-beta: 0.2
+
+Performance for education=Prof-school:
+  Precision: 0.8651685393258427
+  Recall: 0.9625
+  F-beta: 0.9112426035502958
+
+Performance for education=Assoc-voc:
+  Precision: 0.7708333333333334
+  Recall: 0.4625
+  F-beta: 0.578125
+
+Performance for education=Assoc-acdm:
+  Precision: 0.8181818181818182
+  Recall: 0.5901639344262295
+  F-beta: 0.6857142857142857
+
+Performance for education=Doctorate:
+  Precision: 0.796875
+  Recall: 0.864406779661017
+  F-beta: 0.8292682926829268
+
+Performance for education=5th-6th:
+  Precision: 1.0
+  Recall: 0.0
+  F-beta: 0.0
+
+Performance for education=Preschool:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for education=1st-4th:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for marital-status=Married-civ-spouse:
+  Precision: 0.7581755593803786
+  Recall: 0.6521095484826055
+  F-beta: 0.7011539992041385
+
+Performance for marital-status=Never-married:
+  Precision: 0.9393939393939394
+  Recall: 0.29245283018867924
+  F-beta: 0.4460431654676259
+
+Performance for marital-status=Widowed:
+  Precision: 1.0
+  Recall: 0.21428571428571427
+  F-beta: 0.35294117647058826
+
+Performance for marital-status=Divorced:
+  Precision: 0.8888888888888888
+  Recall: 0.35555555555555557
+  F-beta: 0.5079365079365079
+
+Performance for marital-status=Married-spouse-absent:
+  Precision: 1.0
+  Recall: 0.25
+  F-beta: 0.4
+
+Performance for marital-status=Separated:
+  Precision: 1.0
+  Recall: 0.36363636363636365
+  F-beta: 0.5333333333333333
+
+Performance for marital-status=Married-AF-spouse:
+  Precision: 1.0
+  Recall: 0.0
+  F-beta: 0.0
+
+Performance for occupation=Prof-specialty:
+  Precision: 0.7536945812807881
+  Recall: 0.8225806451612904
+  F-beta: 0.7866323907455013
+
+Performance for occupation=Sales:
+  Precision: 0.775
+  Recall: 0.5961538461538461
+  F-beta: 0.6739130434782609
+
+Performance for occupation=Craft-repair:
+  Precision: 0.7848101265822784
+  Recall: 0.33513513513513515
+  F-beta: 0.4696969696969697
+
+Performance for occupation=?:
+  Precision: 0.8571428571428571
+  Recall: 0.3333333333333333
+  F-beta: 0.48
+
+Performance for occupation=Transport-moving:
+  Precision: 0.7916666666666666
+  Recall: 0.2676056338028169
+  F-beta: 0.4
+
+Performance for occupation=Machine-op-inspct:
+  Precision: 0.7368421052631579
+  Recall: 0.2692307692307692
+  F-beta: 0.39436619718309857
+
+Performance for occupation=Farming-fishing:
+  Precision: 0.6
+  Recall: 0.2
+  F-beta: 0.3
+
+Performance for occupation=Exec-managerial:
+  Precision: 0.7883597883597884
+  Recall: 0.772020725388601
+  F-beta: 0.7801047120418848
+
+Performance for occupation=Protective-serv:
+  Precision: 0.8181818181818182
+  Recall: 0.4186046511627907
+  F-beta: 0.5538461538461539
+
+Performance for occupation=Adm-clerical:
+  Precision: 0.7012987012987013
+  Recall: 0.5094339622641509
+  F-beta: 0.5901639344262295
+
+Performance for occupation=Other-service:
+  Precision: 0.75
+  Recall: 0.24
+  F-beta: 0.36363636363636365
+
+Performance for occupation=Handlers-cleaners:
+  Precision: 1.0
+  Recall: 0.0625
+  F-beta: 0.11764705882352941
+
+Performance for occupation=Tech-support:
+  Precision: 0.7659574468085106
+  Recall: 0.5454545454545454
+  F-beta: 0.6371681415929203
+
+Performance for occupation=Priv-house-serv:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for occupation=Armed-Forces:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for relationship=Husband:
+  Precision: 0.7577220077220077
+  Recall: 0.6591099916036943
+  F-beta: 0.7049842837898518
+
+Performance for relationship=Not-in-family:
+  Precision: 0.8888888888888888
+  Recall: 0.33532934131736525
+  F-beta: 0.48695652173913045
+
+Performance for relationship=Unmarried:
+  Precision: 1.0
+  Recall: 0.2978723404255319
+  F-beta: 0.45901639344262296
+
+Performance for relationship=Own-child:
+  Precision: 1.0
+  Recall: 0.22727272727272727
+  F-beta: 0.37037037037037035
+
+Performance for relationship=Wife:
+  Precision: 0.7603305785123967
+  Recall: 0.6174496644295302
+  F-beta: 0.6814814814814815
+
+Performance for relationship=Other-relative:
+  Precision: 1.0
+  Recall: 0.2
+  F-beta: 0.3333333333333333
+
+Performance for race=White:
+  Precision: 0.7754010695187166
+  Recall: 0.6062717770034843
+  F-beta: 0.6804849432929214
+
+Performance for race=Asian-Pac-Islander:
+  Precision: 0.6440677966101694
+  Recall: 0.6666666666666666
+  F-beta: 0.6551724137931034
+
+Performance for race=Black:
+  Precision: 0.75
+  Recall: 0.4936708860759494
+  F-beta: 0.5954198473282443
+
+Performance for race=Amer-Indian-Eskimo:
+  Precision: 0.8333333333333334
+  Recall: 0.8333333333333334
+  F-beta: 0.8333333333333334
+
+Performance for race=Other:
+  Precision: 1.0
+  Recall: 0.25
+  F-beta: 0.4
+
+Performance for sex=Male:
+  Precision: 0.7635694572217111
+  Recall: 0.6212574850299402
+  F-beta: 0.6851011143210896
+
+Performance for sex=Female:
+  Precision: 0.803921568627451
+  Recall: 0.5020408163265306
+  F-beta: 0.6180904522613065
+
+Performance for native-country=United-States:
+  Precision: 0.7767776777677767
+  Recall: 0.5943526170798898
+  F-beta: 0.6734295747171284
+
+Performance for native-country=Taiwan:
+  Precision: 0.6666666666666666
+  Recall: 1.0
+  F-beta: 0.8
+
+Performance for native-country=?:
+  Precision: 0.71875
+  Recall: 0.8214285714285714
+  F-beta: 0.7666666666666667
+
+Performance for native-country=Germany:
+  Precision: 0.9
+  Recall: 1.0
+  F-beta: 0.9473684210526315
+
+Performance for native-country=Canada:
+  Precision: 0.6
+  Recall: 0.42857142857142855
+  F-beta: 0.5
+
+Performance for native-country=South:
+  Precision: 0.5
+  Recall: 0.75
+  F-beta: 0.6
+
+Performance for native-country=Mexico:
+  Precision: 0.75
+  Recall: 0.5
+  F-beta: 0.6
+
+Performance for native-country=Hungary:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=Nicaragua:
+  Precision: 0.0
+  Recall: 1.0
+  F-beta: 0.0
+
+Performance for native-country=Scotland:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=Trinadad&Tobago:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=China:
+  Precision: 0.6666666666666666
+  Recall: 1.0
+  F-beta: 0.8
+
+Performance for native-country=Philippines:
+  Precision: 0.5454545454545454
+  Recall: 0.75
+  F-beta: 0.631578947368421
+
+Performance for native-country=El-Salvador:
+  Precision: 1.0
+  Recall: 0.3333333333333333
+  F-beta: 0.5
+
+Performance for native-country=England:
+  Precision: 0.8333333333333334
+  Recall: 0.7142857142857143
+  F-beta: 0.7692307692307693
+
+Performance for native-country=Cuba:
+  Precision: 0.6666666666666666
+  Recall: 0.3333333333333333
+  F-beta: 0.4444444444444444
+
+Performance for native-country=Jamaica:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=India:
+  Precision: 0.5714285714285714
+  Recall: 0.8
+  F-beta: 0.6666666666666666
+
+Performance for native-country=Italy:
+  Precision: 1.0
+  Recall: 0.75
+  F-beta: 0.8571428571428571
+
+Performance for native-country=Poland:
+  Precision: 0.5
+  Recall: 0.3333333333333333
+  F-beta: 0.4
+
+Performance for native-country=Thailand:
+  Precision: 1.0
+  Recall: 0.0
+  F-beta: 0.0
+
+Performance for native-country=Columbia:
+  Precision: 0.0
+  Recall: 1.0
+  F-beta: 0.0
+
+Performance for native-country=Ecuador:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=Vietnam:
+  Precision: 1.0
+  Recall: 0.0
+  F-beta: 0.0
+
+Performance for native-country=Portugal:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=Puerto-Rico:
+  Precision: 0.0
+  Recall: 1.0
+  F-beta: 0.0
+
+Performance for native-country=Dominican-Republic:
+  Precision: 0.0
+  Recall: 1.0
+  F-beta: 0.0
+
+Performance for native-country=Laos:
+  Precision: 1.0
+  Recall: 0.0
+  F-beta: 0.0
+
+Performance for native-country=Haiti:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=Iran:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=Guatemala:
+  Precision: 1.0
+  Recall: 0.0
+  F-beta: 0.0
+
+Performance for native-country=Yugoslavia:
+  Precision: 1.0
+  Recall: 0.6666666666666666
+  F-beta: 0.8
+
+Performance for native-country=Japan:
+  Precision: 0.6666666666666666
+  Recall: 0.4
+  F-beta: 0.5
+
+Performance for native-country=Ireland:
+  Precision: 1.0
+  Recall: 0.0
+  F-beta: 0.0
+
+Performance for native-country=Hong:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=France:
+  Precision: 1.0
+  Recall: 0.5
+  F-beta: 0.6666666666666666
+
+Performance for native-country=Cambodia:
+  Precision: 1.0
+  Recall: 0.0
+  F-beta: 0.0
+
+Performance for native-country=Peru:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=Outlying-US(Guam-USVI-etc):
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=Honduras:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
+Performance for native-country=Greece:
+  Precision: 1.0
+  Recall: 1.0
+  F-beta: 1.0
+
