@@ -1,79 +1,228 @@
-# Census Classifier
+# Salary Classifier API
 
-For this project,
+## Overview
 
-Working in a command line environment is recommended for ease of use with git and dvc. If on Windows, WSL1 or 2 is recommended.
+This project is part of the Udacity Machine Learning DevOps Engineer Nanodegree. The goal of this section is to implement a salary classifier based on census data. The application is built using FastAPI, a modern, fast (high-performance) web framework for building APIs with Python 3.6+.
 
-# Environment Set up
-* Download and install conda if you don’t have it already.
-    * Use the supplied requirements file to create a new environment, or
-    * conda create -n [envname] "python=3.8" scikit-learn dvc pandas numpy pytest jupyter jupyterlab fastapi uvicorn -c conda-forge
-    * Install git either through conda (“conda install git”) or through your CLI, e.g. sudo apt-get git.
+The classifier predicts whether an individual's annual income exceeds $50K based on various demographic features from the census data. The application includes endpoints for performing predictions using a pre-trained machine learning model.
 
-## Repositories
+We automatically deploy the API with Github Actions to Elastic Beanstalk after passing linting and testing.
 
-* Create a directory for the project and initialize Git and DVC.
-   * As you work on the code, continually commit changes. Trained models you want to keep must be committed to DVC.
-* Connect your local Git repository to GitHub.
+## Project Structure
 
-## Set up S3
+```plaintext
+.
+├── app.log                   # Application log file
+├── app.py                    # Main FastAPI application
+├── conda_requirements.txt    # Conda environment requirements
+├── config.json               # Configuration file
+├── dvc_on_heroku_install.txt # DVC on Heroku installation instructions
+├── environment.yaml          # Conda environment YAML file
+├── main.py                   # Main script to run the application
+├── Makefile                  # Makefile for automating tasks
+├── model_card_template.md    # Template for model card documentation
+├── Procfile                  # Heroku Procfile for deployment
+├── README.md                 # Project README file
+├── requirements.txt          # Project dependencies
+├── screenshots               # Directory for storing screenshots
+├── scripts                   # Directory for additional scripts
+│   └── run_in_conda.sh       # Script to run commands in conda environment
+├── src
+│   ├── cleaning              # Directory for data cleaning scripts
+│   ├── __init__.py           # Init file for src module
+│   ├── data.py               # Data processing utilities
+│   ├── diagnostics.py        # Diagnostics and validation utilities
+│   ├── file_util.py          # Utility for finding repository root
+│   ├── logger.py             # Logging utilities
+│   ├── model.py              # Model training, saving, loading, and inference
+│   ├── score_model.py        # Model scoring script and utilities
+│   ├── train_model.py        # Model training script and utilities
+├── tests
+│   ├── __init__.py           # Init file for tests module
+│   ├── test_app.py           # Unit tests for FastAPI endpoints
+│   ├── test_file_util.py     # Unit tests for file utilities
+│   ├── test_model.py         # Unit tests for model functions
+└── model                     # Directory for storing trained models
+```
 
-* In your CLI environment install the<a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank"> AWS CLI tool</a>.
-* In the navigation bar in the Udacity classroom select **Open AWS Gateway** and then click **Open AWS Console**. You will not need the AWS Access Key ID or Secret Access Key provided here.
-* From the Services drop down select S3 and then click Create bucket.
-* Give your bucket a name, the rest of the options can remain at their default.
+## Requirements
 
-To use your new S3 bucket from the AWS CLI you will need to create an IAM user with the appropriate permissions. The full instructions can be found <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console" target="_blank">here</a>, what follows is a paraphrasing:
+To install the required packages, run:
 
-* Sign in to the IAM console <a href="https://console.aws.amazon.com/iam/" target="_blank">here</a> or from the Services drop down on the upper navigation bar.
-* In the left navigation bar select **Users**, then choose **Add user**.
-* Give the user a name and select **Programmatic access**.
-* In the permissions selector, search for S3 and give it **AmazonS3FullAccess**
-* Tags are optional and can be skipped.
-* After reviewing your choices, click create user. 
-* Configure your AWS CLI to use the Access key ID and Secret Access key.
+```bash
+pip install -r requirements.txt
+```
 
-## GitHub Actions
+Alternatively, you can create and set up the conda environment using the Makefile:
 
-* Setup GitHub Actions on your repository. You can use one of the pre-made GitHub Actions if at a minimum it runs pytest and flake8 on push and requires both to pass without error.
-   * Make sure you set up the GitHub Action to have the same version of Python as you used in development.
-* Add your <a href="https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions" target="_blank">AWS credentials to the Action</a>.
-* Set up <a href="https://github.com/iterative/setup-dvc" target="_blank">DVC in the action</a> and specify a command to `dvc pull`.
+```bash
+make createconda
+```
 
-## Data
+To activate the environment, run:
 
-* Download census.csv from the data folder in the starter repository.
-   * Information on the dataset can be found <a href="https://archive.ics.uci.edu/ml/datasets/census+income" target="_blank">here</a>.
-* Create a remote DVC remote pointing to your S3 bucket and commit the data.
-* This data is messy, try to open it in pandas and see what you get.
-* To clean it, use your favorite text editor to remove all spaces.
-* Commit this modified data to DVC under a new name (we often want to keep the raw data untouched but then can keep updating the cooked version).
+```bash
+conda activate census-classifier
+```
 
-## Model
+## Running the Application
 
-* Using the starter code, write a machine learning model that trains on the clean data and saves the model. Complete any function that has been started.
-* Write unit tests for at least 3 functions in the model code.
-* Write a function that outputs the performance of the model on slices of the data.
-   * Suggestion: for simplicity, the function can just output the performance on slices of just the categorical features.
-* Write a model card using the provided template.
+1. **Start the FastAPI server:**
 
-## API Creation
+    ```bash
+    uvicorn app:app --reload
+    ```
 
-* Create a RESTful API using FastAPI this must implement:
-   * GET on the root giving a welcome message.
-   * POST that does model inference.
-   * Type hinting must be used.
-   * Use a Pydantic model to ingest the body from POST. This model should contain an example.
-    * Hint: the data has names with hyphens and Python does not allow those as variable names. Do not modify the column names in the csv and instead use the functionality of FastAPI/Pydantic/etc to deal with this.
-* Write 3 unit tests to test the API (one for the GET and two for POST, one that tests each prediction).
+2. **Access the API documentation:**
 
-## API Deployment
+    Visit `http://127.0.0.1:8000/docs` to see the interactive API documentation provided by Swagger UI.
 
-* Create a free Heroku account (for the next steps you can either use the web GUI or download the Heroku CLI).
-* Create a new app and have it deployed from your GitHub repository.
-   * Enable automatic deployments that only deploy if your continuous integration passes.
-   * Hint: think about how paths will differ in your local environment vs. on Heroku.
-   * Hint: development in Python is fast! But how fast you can iterate slows down if you rely on your CI/CD to fail before fixing an issue. I like to run flake8 locally before I commit changes.
-* Set up DVC on Heroku using the instructions contained in the starter directory.
-* Set up access to AWS on Heroku, if using the CLI: `heroku config:set AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy`
-* Write a script that uses the requests module to do one POST on your live API.
+## API Endpoints
+
+### GET /
+
+- **Description:** Welcome message for the API.
+- **Response:**
+    ```json
+    {
+        "message": "Welcome to Eric's FastAPI inference service! Let's predict someone's income."
+    }
+    ```
+
+### POST /predict
+
+- **Description:** Predicts whether an individual's income exceeds $50K based on their demographic features.
+- **Request Body:**
+
+    ```json
+    {
+        "age": 25,
+        "workclass": "Private",
+        "fnlgt": 77516,
+        "education": "Bachelors",
+        "education-num": 13,
+        "marital-status": "Never-married",
+        "occupation": "Adm-clerical",
+        "relationship": "Not-in-family",
+        "race": "White",
+        "sex": "Male",
+        "capital-gain": 2174,
+        "capital-loss": 0,
+        "hours-per-week": 40,
+        "native-country": "United-States"
+    }
+    ```
+
+- **Response:**
+
+    ```json
+    {
+        "prediction": ">50K"
+    }
+    ```
+
+## Running the Tests
+
+To run the tests, use:
+
+```bash
+pytest tests
+```
+
+## Makefile Commands
+
+The Makefile includes several useful commands for setting up and managing the project environment:
+
+- **Create conda environment:**
+
+    ```bash
+    make createconda
+    ```
+
+- **Activate conda environment:**
+
+    ```bash
+    conda activate census-classifier
+    ```
+
+- **Deactivate conda environment:**
+
+    ```bash
+    conda deactivate
+    ```
+
+- **Install additional dependencies:**
+
+    ```bash
+    make install
+    ```
+
+- **Lint the codebase:**
+
+    ```bash
+    make lint
+    ```
+
+- **Automatically format the codebase:**
+
+    ```bash
+    make autolint
+    ```
+
+- **Run the tests:**
+
+    ```bash
+    make test
+    ```
+
+- **Clean the data:**
+
+    ```bash
+    make clean
+    ```
+
+- **Train the model:**
+
+    ```bash
+    make train
+    ```
+
+- **Score the model:**
+
+    ```bash
+    make score
+    ```
+
+- **Sanity check:**
+
+    ```bash
+    make sanity
+    ```
+
+- **Deploy the model:**
+
+    ```bash
+    make deploy
+    ```
+
+## Continuous Integration and Deployment
+
+This project uses GitHub Actions for continuous integration. The CI pipeline includes:
+
+- Running linting checks
+- Running the test suite
+- Building the Docker image
+
+On merges to the `master` branch, the project is automatically deployed to AWS Elastic Beanstalk.
+
+## Author
+
+Eric Koch
+
+## Date Created
+
+2024-05-30
+
+## License
+
+This project is licensed under the MIT License.
