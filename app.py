@@ -45,7 +45,7 @@ class ModelInput(BaseModel):
 
 @app.get("/")
 async def read_root():
-    return {"message": "Welcome to the FastAPI inference service!"}
+    return {"message": "Welcome to Eric's FastAPI inference service! Let's predict someone's income."}
 
 
 @app.post("/predict")
